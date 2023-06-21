@@ -124,7 +124,6 @@ public class Parser {
     private static void processPrintStatement(String line) {
         String content = line.substring(line.indexOf("(") + 1, line.indexOf(")")).trim().replace("\"", ""); // Extract the content
 
-        // Replace variable references with their values
         for (Var variable : variables) {
             content = content.replace("${" + variable.getVariableName() + "}", variable.getVariableValue().toString());
         }
