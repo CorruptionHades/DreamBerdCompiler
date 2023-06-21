@@ -1,2 +1,8 @@
 var var name = "Bob"!
 print("${name}")!
+
+test()!
+
+function test() {
+    print("Hello World!")!
+}
