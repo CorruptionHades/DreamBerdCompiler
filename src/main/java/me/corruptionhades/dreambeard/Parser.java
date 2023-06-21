@@ -56,7 +56,7 @@ public class Parser {
             processConstVar(line);
         }
         else if (line.startsWith("when ")) {
-            processWhenStatement(line);
+            //processWhenStatement(line);
         }
         else if (line.startsWith("print(")) {
             processPrintStatement(line);

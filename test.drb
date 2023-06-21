@@ -1,8 +1,10 @@
-var var name = "Bob"!
-print("${name}")!
+const const a = "A:"!
+const const b = "C:"!
 
-test()!
-
-function test() {
-    print("Hello World!")!
-}
+print(${a} Hello!)!
+print(${b} Hi! How are you?)!
+print(${a} I am good! What about you?)!
+print(${b} Doing fine too!)!
+print(${a} So, what are you up to today?)!
+print(${b} Nothing much, will clean the lawn, mow the dishes... The usual.)!
+print(${a} Nice)!
