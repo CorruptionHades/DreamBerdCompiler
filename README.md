@@ -1,4 +1,4 @@
-# DreamBeardCompiler
+# DreamBerdCompiler
 
 Features so far:
 
