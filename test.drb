@@ -10,5 +10,11 @@ print(${b} Nothing much, will clean the lawn, mow the dishes... The usual.)!
 nice()!
 
 function nice() {
-    print(${a} "Nice!")!
+print(${a} "Nice! Lol!")!
+}
+
+var var age = 2!
+
+if(age == 2) {
+ print("Age is two!")!
 }

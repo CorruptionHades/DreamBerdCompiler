@@ -3,9 +3,9 @@ package me.corruptionhades.dreambeard.structure;
 public class Function {
 
     private final String name;
-    private final String[] code;
+    private final Statement[] code;
 
-    public Function(String name, String[] code) {
+    public Function(String name, Statement[] code) {
         this.name = name;
         this.code = code;
     }
@@ -14,7 +14,7 @@ public class Function {
         return name;
     }
 
-    public String[] getCode() {
+    public Statement[] getCode() {
         return code;
     }
 }
