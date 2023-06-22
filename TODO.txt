@@ -1,3 +1,4 @@
+- if statement
 - when statement
 - user input
 - types
@@ -16,3 +17,48 @@
 - Automatic-Bracket-Insertion
 - Automatic-Quotation-Marks-Insertion
 - Automatic-Insertion
+
+
+private static int processCodeBlock(Statement statement, boolean execute) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            boolean insideCodeBlock = true;
+
+            int currentLine = 1;
+            while (currentLine < statement.getLine() + 1) {
+                reader.readLine();
+                currentLine++;
+            }
+
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+
+                // Check for the end of the code block
+                if (line.equals("}")) {
+                    insideCodeBlock = false;
+                    break;
+                }
+
+                // Process each line within the code block
+                Statement lineStatement = getStatement(currentLine);
+                if(lineStatement == null) {
+                    System.out.println("ERROR: Invalid statement! " + currentLine);
+                    continue;
+                }
+
+                if(execute) executeStatement(lineStatement);
+                currentLine++;
+            }
+
+            if (insideCodeBlock) {
+                System.out.println("ERROR: Missing closing brace '}' for code block!");
+            }
+
+            return currentLine;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return statement.getLine();
+    }

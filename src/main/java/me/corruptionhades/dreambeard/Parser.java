@@ -102,6 +102,9 @@ public class Parser {
         else if(line.startsWith("delete")) {
             processDeletion(statement);
         }
+        else if(line.startsWith("function")) {
+            skipTo(processCodeBlock(statement, false));
+        }
 
         for (String varName : getVarNames()) {
             if(line.startsWith(varName) && !line.startsWith(varName + ".")) {
@@ -237,35 +240,43 @@ public class Parser {
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("function ")) {
                     String functionName = line.substring("function ".length(), line.indexOf("()"));
-                    StringBuilder functionCode = new StringBuilder();
-
+                    Function function = new Function(functionName);
                     try (BufferedReader reader2 = new BufferedReader(new FileReader(file))) {
-                        String codeLine;
-                        boolean insideFunction = false;
-                        while ((codeLine = reader2.readLine()) != null) {
-                            if (insideFunction) {
-                                if (codeLine.trim().equals("}")) {
-                                    break;
-                                }
-                                functionCode.append(codeLine).append("\n");
-                            } else if (codeLine.trim().startsWith("function")) {
-                                insideFunction = true;
-                            }
+                        String line2;
+                        int currentLine = 1;
+                        while (currentLine < index + 2) {
+                            reader2.readLine();
+                            currentLine++;
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+
+                        while ((line2 = reader2.readLine()) != null) {
+                            line2 = line2.trim();
+
+                            // Check for the end of the code block
+                            if (line2.equals("}")) {
+                                break;
+                            }
+
+                            // Process each line within the code block
+                            Statement lineStatement = getStatement(currentLine);
+                            if (lineStatement == null) {
+                                System.out.println("ERROR: Invalid statement! " + currentLine);
+                                continue;
+                            }
+
+                            function.addStatement(lineStatement);
+                            currentLine++;
+                        }
                     }
 
-                    String input = functionCode.toString();
-                    List<Statement> code = new ArrayList<>();
-                    code.add(getStatement(index));
-
-                    Function function = new Function(functionName, code.toArray(new Statement[0]));
-                    functions.add(function);
                     if (debug) {
                         System.out.println("Function <<" + functionName + ">> has been added!");
-                        System.out.println("Function <<" + functionName + ">> Code: " + input);
+                        for (Statement statement : function.getCode()) {
+                            System.out.println(statement.getCode());
+                        }
                     }
+
+                    functions.add(function);
                 }
                 index++;
             }

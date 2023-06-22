@@ -1,20 +1,10 @@
-const const a = "A:"!
-const const b = "B:"!
-
-print(${a} Hello!)!
-print(${b} Hi! How are you?)!
-print(${a} I am good! What about you?)!
-print(${b} Doing fine too!)!
-print(${a} So, what are you up to today?)!
-print(${b} Nothing much, will clean the lawn, mow the dishes... The usual.)!
-nice()!
-
 function nice() {
-print(${a} "Nice! Lol!")!
+print("Nice! Lol!")!
 }
 
 var var age = 2!
 
 if(age == 2) {
- print("Age is two!")!
+ print("Age is 2")!
+ nice()!
 }
