@@ -1,4 +1,4 @@
-# DreamBeardCompiler
+# DreamBerdCompiler
 
 Features so far:
 
@@ -7,4 +7,4 @@ Features so far:
 - delete keyword
 - creation of custom functions
 
-Dreambeard: https://github.com/TodePond/DreamBerd
+Dreamberd: https://github.com/TodePond/DreamBerd

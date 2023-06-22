@@ -161,7 +161,6 @@ public class Parser {
         String line = lin.getCode();
         String content = line.substring(line.indexOf("(") + 1, line.indexOf(")")).trim().replace("\"", ""); // Extract the content
 
-        // Replace variable references with their values
         for (Var variable : variables) {
             content = content.replace("${" + variable.getVariableName() + "}", variable.getVariableValue().toString());
         }
